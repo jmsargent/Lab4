@@ -1,3 +1,5 @@
+package com.company;
+
 /** A SortingTest contains a function for determining whether a
     given Sorter is correctly implemented. */
 public interface SortingTest {

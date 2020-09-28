@@ -1,3 +1,5 @@
+package com.company;
+
 /** A sorter contains a sorting function. */
 public interface Sorter {
 
