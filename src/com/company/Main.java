@@ -10,7 +10,7 @@ public class Main {
         SortingTest tester = new MySortingTest();
 
         // retrieve all sorters to test
-        Map<String,Sorter> sorters = AllSorters.getSorters();
+        Map<String,Sorter> sorters = AllSo  rters.getSorters();
 
         // test each sorter in turn
         for (Map.Entry<String,Sorter> entry : sorters.entrySet()) {
