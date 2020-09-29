@@ -9,7 +9,6 @@ public class Main {
 
         // retrieve all sorters to test
         Map<String,Sorter> sorters = AllSorters.getSorters();
-
         // test each sorter in turn
         for (Map.Entry<String,Sorter> entry : sorters.entrySet()) {
 
