@@ -2,30 +2,69 @@ import java.util.Random;
 
 public class MySortingTest implements SortingTest {
 
-    public int[] arraymaker(){
+    private int[] arraymaker() {
 
-        int [] IntArray = new int[20];
+        int[] intArray = new int[20];
 
         Random purerandom = new Random();
 
-        for (int i = 0; i <20 ; i++) {
+        for (int i = 0; i < 20; i++) {
 
 
-            IntArray[i] = purerandom.nextInt()%1000;
-            System.out.print(IntArray[i]);
-            System.out.print(" ");
+            intArray[i] = purerandom.nextInt() % 1000;
+            //System.out.print(IntArray[i]);
+            //System.out.print(" ");
         }
         System.out.println();
-    return IntArray;
+        return intArray;
     }
+
+    private int[] copyray(int arr[]) {
+
+        int[] copyArray = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+
+            copyArray[i] = arr[i];
+        }
+        return copyArray;
+    }
+
+    private String arrayString(int arr[]) {
+        int arrlen = arr.length;
+        String arrString = "";
+        for (int i = 0; i < arrlen; i++) {
+
+
+            String tempString = String.valueOf(arr[i]);
+            arrString = arrString + " " + tempString;
+
+        }
+        //System.out.println(arrString);
+        return arrString;
+    }
+
     @Override
     public boolean validSorter(Sorter s) {
-
-        //if array-size up to 20 return true
-
-        //if array contains val = -1000 to 1000 return true
-
+        CorrectSorter minSorterare = new CorrectSorter();
+        int arrstart[] = arraymaker();
+        int arrSortTest[] = copyray(arrstart);
+        int arrSortSafe[] = copyray(arrstart);
+        minSorterare.sort(arrSortSafe);
+        String correct = arrayString(arrSortSafe);
+        //if array-size over 20 return error
+        try {
+            s.sort(arrSortTest);
+            //if array contains val = -1000 to 1000 return true
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Before sort:   " + arrayString(arrstart));
+            System.out.println("ERROR: " + e);
+            System.out.println("Expected after: " + correct);
+            return false;
+        }
         //if array contains the same number twice then return !true
+
+
+
         return true;
     }
 }
