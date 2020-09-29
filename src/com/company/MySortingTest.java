@@ -2,20 +2,20 @@ import java.util.Random;
 
 public class MySortingTest implements SortingTest {
 
-    private int[] arraymaker() {
+    private int[] arraymaker(int len) {
 
-        int[] intArray = new int[20];
+        int[] intArray = new int[len];
 
         Random purerandom = new Random();
-
-        for (int i = 0; i < 20; i++) {
+        int i = -1;
+        while (++i < len) {
 
 
             intArray[i] = purerandom.nextInt() % 1000;
             //System.out.print(IntArray[i]);
             //System.out.print(" ");
         }
-        System.out.println();
+
         return intArray;
     }
 
@@ -46,7 +46,12 @@ public class MySortingTest implements SortingTest {
     @Override
     public boolean validSorter(Sorter s) {
         CorrectSorter minSorterare = new CorrectSorter();
-        int arrstart[] = arraymaker();
+        boolean wasCorrect = true;
+
+        for (int i = 0; i < 20; i++) {
+
+
+        int arrstart[] = arraymaker(i);
         int arrSortTest[] = copyray(arrstart);
         int arrSortSafe[] = copyray(arrstart);
         minSorterare.sort(arrSortSafe);
@@ -59,12 +64,15 @@ public class MySortingTest implements SortingTest {
             System.out.println("Before sort:   " + arrayString(arrstart));
             System.out.println("ERROR: " + e);
             System.out.println("Expected after: " + correct);
-            return false;
+            System.out.println("");
+            wasCorrect = false;
         }
         //if array contains the same number twice then return !true
 
 
 
-        return true;
+        }
+
+        return wasCorrect;
     }
 }
