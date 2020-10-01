@@ -1,5 +1,6 @@
 import java.util.Random;
 
+
 public class MySortingTest implements SortingTest {
 
     private int[] arraymaker(int len) {
@@ -46,20 +47,45 @@ public class MySortingTest implements SortingTest {
     @Override
     public boolean validSorter(Sorter s) {
         CorrectSorter minSorterare = new CorrectSorter();
+        Random random = new Random();
+        int randomLen = random.nextInt(20);
         boolean wasCorrect = true;
 
-        for (int i = 0; i < 20; i++) {
 
-
-        int arrstart[] = arraymaker(i);
+        int arrstart[] = arraymaker(randomLen);
         int arrSortTest[] = copyray(arrstart);
         int arrSortSafe[] = copyray(arrstart);
         minSorterare.sort(arrSortSafe);
         String correct = arrayString(arrSortSafe);
         //if array-size over 20 return error
+        //System.out.print(MySortingTest);
+
+
         try {
             s.sort(arrSortTest);
-            //if array contains val = -1000 to 1000 return true
+            for (int i = 0; i < randomLen -1; i++) {
+                int testTest = arrSortTest[i];
+                int testSafe = arrSortSafe[i];
+                if (testTest != testSafe) {
+                    System.out.println("Before sort:   " + arrayString(arrstart));
+                    System.out.println("Error: Element " + i + " is " + testTest + " expected " + testSafe);
+                    System.out.println("After test sort:   " + arrayString(arrSortTest));
+                    System.out.println("Correct after sort:" + arrayString(arrSortSafe));
+                    wasCorrect = false;
+                    break;
+                }
+            }
+
+            //if(AllSorters.getSorters().containsKey())
+            //catch "all-for-one"
+
+            //catch "almost-bubbly"
+
+            //catch i-see-no-neg
+
+            //catch oblivious
+
+
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Before sort:   " + arrayString(arrstart));
             System.out.println("ERROR: " + e);
@@ -67,11 +93,10 @@ public class MySortingTest implements SortingTest {
             System.out.println("");
             wasCorrect = false;
         }
-        //if array contains the same number twice then return !true
 
 
+        //catch tampering with duplicate
 
-        }
 
         return wasCorrect;
     }
