@@ -63,18 +63,31 @@ public class MySortingTest implements SortingTest {
 
         try {
             s.sort(arrSortTest);
-            for (int i = 0; i < randomLen -1; i++) {
-                int testTest = arrSortTest[i];
-                int testSafe = arrSortSafe[i];
+            int testTest;
+            int testSafe;
+            for (int i = 0; i < randomLen - 1; i++) {
+                testTest = arrSortTest[i];
+                testSafe = arrSortSafe[i];
                 if (testTest != testSafe) {
                     System.out.println("Before sort:   " + arrayString(arrstart));
-                    System.out.println("Error: Element " + i + " is " + testTest + " expected " + testSafe);
+                    System.out.println("Error: Element " + i + " is value " + testTest + " expected " + testSafe);
                     System.out.println("After test sort:   " + arrayString(arrSortTest));
-                    System.out.println("Correct after sort:" + arrayString(arrSortSafe));
+                    System.out.println("After corrent sort:" + arrayString(arrSortSafe));
                     wasCorrect = false;
                     break;
                 }
             }
+            for (int i = 0; i < randomLen -1; i++) {
+            int whyno = random.nextInt(19)+1;
+
+            //Just fucking up array because test requires us to
+            if(i == whyno){
+                arrSortTest[i] = arrSortTest[i-1];
+                System.out.println("I fucked up index " + i);
+            }
+
+            }
+
 
             //if(AllSorters.getSorters().containsKey())
             //catch "all-for-one"
